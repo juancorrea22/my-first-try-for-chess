@@ -23,6 +23,7 @@ class Board {
             return board;
         }
         int positionInfo(Position& position);
+        int cordsInfo(const int& x, const int& y);
         void printBoard();
 };
 

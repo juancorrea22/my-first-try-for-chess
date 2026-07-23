@@ -2,16 +2,19 @@
 
 bool Horse::validMove (Position newPosition, Board& board) {
     bool ans = false;
-    if (position.colum + 1 == newPosition.colum || position.colum - 1 == newPosition.colum) {
-        if (position.row + 2 == newPosition.row || position.row - 2 == newPosition.row) {
-            ans = true;
+    if (!sameColor(board.positionInfo(newPosition), board.positionInfo(position))) {
+        if (position.column + 1 == newPosition.column || position.column - 1 == newPosition.column) {
+            if (position.row + 2 == newPosition.row || position.row - 2 == newPosition.row) {
+                ans = true;
+            }
+        }
+        else if (position.row + 1 == newPosition.row || position.row - 1 == newPosition.row) {
+            if (position.column + 2 == newPosition.column || position.column - 2 == newPosition.column) {
+                ans = true;
+            }
         }
     }
-    else if (position.row + 1 == newPosition.row || position.row - 1 == newPosition.row) {
-        if (position.colum + 2 == newPosition.colum || position.colum - 2 == newPosition.colum) {
-            ans = true;
-        }
-    }
+
     return ans;
 }
 
@@ -30,14 +33,14 @@ std::vector<Position> Horse::calculatePosibleNewPositions(Board& board) {
         if ((a & (1 << 1)) != 0) j *= -1;
         if ((a & (1 << 0)) == 0) i *= -1;
         
-        Position posiblePosition(position.row + i, position.colum + j);
+        Position posiblePosition(position.row + i, position.column + j);
 
         if (validPosition(posiblePosition)) {
-            int piezaDestino = board.positionInfo(posiblePosition);
+            int destinyPosition = board.positionInfo(posiblePosition);
             
-            bool esMismoColor = (color && isWhite(piezaDestino)) || (!color && isBlack(piezaDestino));
+            bool sameColor = (color && isWhite(destinyPosition)) || (!color && isBlack(destinyPosition));
 
-            if (!esMismoColor) {
+            if (!sameColor) {
                 ans.push_back(posiblePosition);
             }
         }

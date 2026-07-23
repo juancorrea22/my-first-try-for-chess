@@ -29,7 +29,11 @@ Board::Board() {
 }
 
 int Board::positionInfo(Position& position) {
-    return board[position.row][position.colum];
+    return board[position.row][position.column];
+}
+
+int Board::cordsInfo(const int& x, const int& y) {
+    return board[x][y];
 }
 
 void Board::printBoard() {

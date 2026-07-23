@@ -3,7 +3,7 @@
 
 struct Position {
     int row;
-    int colum;
+    int column;
     Position() = default;
     Position(int r, int c);
 
@@ -11,5 +11,7 @@ struct Position {
 };
 
 bool validPosition(Position& position);
+
+char positionMovementChange(Position& initialPosition, Position& lastPosition);
 
 #endif

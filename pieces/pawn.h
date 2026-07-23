@@ -11,8 +11,6 @@ class Pawn : public Piece {
     
         std::vector<Position> calculatePosibleNewPositions(Board& board) override;
 
-
-    
 };
 
 #endif
